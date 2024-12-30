@@ -1,5 +1,6 @@
 from models import Income, Expense
 from database import save_income, save_expense, get_incomes, get_expenses
+from database import incomes, expenses
 
 def add_income(amount, source):
     income= Income(amount, source)
@@ -16,3 +17,11 @@ def view_summary():
     total_expense=sum(expense.amount for expense in get_expenses())
     balance= total_income - total_expense
     return {"total_income": total_income, "total_expense": total_expense, "balance": balance}
+
+def get_incomes():
+    """Retrieve incomes as dictionaries for visualization."""
+    return[{"amount": income.amount,"source": income.source,"date":income.date} for income in incomes]
+def get_expenses():
+    """Retrieve expenses as dictionaries for visualization."""
+    return[{"amount": expense.amount, "category": expense.category, "date": expense.date} for expense in expenses]
+

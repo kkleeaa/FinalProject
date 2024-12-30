@@ -1,6 +1,7 @@
 import streamlit as st
 from finance import add_income, add_expenses, view_summary
 from utils import print_summary
+from chart import expense_pie_chart, income_bar_chart
 
 def main():
     st.title("Finance Manager")
@@ -23,6 +24,25 @@ def main():
     elif choice=="View Financial Summmary":
         summary=view_summary()
         print_summary(summary)
+
+        st.subheader("Visualizations")
+        expenses= get_expenses()
+        incomes= get_incomes()
+
+        pie_chart=expense_pie_chart(expenses)
+        if pie_chart:
+            st.plotly_chart(pie_chart)
+        else:
+            st.write("No expenses to show.")
+
+        bar_chart= income_bar_chart(incomes)
+        if bar_chart:
+            st.plotly_chart(bar_chart)
+        else:
+            st.write("No incomes to show.")
+
+
+
 
 if __name__=="__main__":
     main()
