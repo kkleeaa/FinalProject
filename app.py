@@ -26,8 +26,8 @@ def main():
         print_summary(summary)
 
         st.subheader("Visualizations")
-        expenses= get_expenses()
-        incomes= get_incomes()
+        expenses= expense_pie_chart()
+        incomes= income_bar_chart()
 
         pie_chart=expense_pie_chart(expenses)
         if pie_chart:
